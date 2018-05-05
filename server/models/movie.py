@@ -2,7 +2,8 @@ from db import db
 from bson.objectid import ObjectId
 
 class MovieModel():
-    def __init__(self, title, story_line, poster, trailer_link):
+    def __init__(self, _id, title, story_line, poster, trailer_link):
+        self._id = _id
         self.title = title
         self.story_line = story_line
         self.poster = poster
