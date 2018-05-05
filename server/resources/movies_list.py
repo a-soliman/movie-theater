@@ -15,6 +15,7 @@ class Movies_List(Resource):
 
 # TEST DATA
 avengers_infinity_war = MovieModel(
+    None,
     'Avengers: Infinity War', 
     'Iron Man, Thor, the Hulk and the rest of the Avengers unite to battle their most powerful enemy yet -- the evil Thanos. On a mission to collect all six Infinity Stones, Thanos plans to use the artifacts to inflict his twisted will on reality.',
     'http://t2.gstatic.com/images?q=tbn:ANd9GcQoBtRhueP0Kn_O7e89DXSBKBUz-1Nu4Ngb9eqFzqF3EbPGWYVP',
@@ -22,6 +23,7 @@ avengers_infinity_war = MovieModel(
     )
 
 deadpool_2 = MovieModel(
+    None,
     'Deadpool 2',
     'Wisecracking mercenary Deadpool joins forces with three mutants -- Bedlam, Shatterstar and Domino -- to protect a boy from the all-powerful Cable.',
     'http://t2.gstatic.com/images?q=tbn:ANd9GcTkbXNbwGV0npOKCGSndE-YCGpRb2xQDRV8VyMfGlsEfej-sVMv',
