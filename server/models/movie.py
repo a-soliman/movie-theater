@@ -26,3 +26,15 @@ class MovieModel():
             movie = MovieModel(movie['title'], movie['story_line'], movie['poster'], movie['trailer_link'])
             movies.append(movie)
         return movies
+    
+    @classmethod
+    def find_by_id(cls, _id):
+        movies_collection = db.movies
+        result = movies_collection.find_one({'_id': ObjectId(_id)})
+
+        try:
+            movie = MovieModel(result['_id'], result['title'], result['story_line'], result['poster'], result['trailer_link'])
+        except:
+            return None
+        
+        return movie
