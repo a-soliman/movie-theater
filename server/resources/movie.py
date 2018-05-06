@@ -40,7 +40,14 @@ class Movie(Resource):
         return {'message': 'Not Found'}, 404
     
     def post(self, _id):
-        pass
+        data = Movie.parser.parse_args()
+        new_movie = MovieModel(None, data['title'], data['story_line'], data['poster'], data['trailer_link'])
+
+        try:
+            new_movie.save_to_db()
+        except:
+            return {'message': 'An error has occurred'}, 500
+        return {'message': 'New Movie has been inserted'}, 201
     
     def put(self, _id):
         pass
