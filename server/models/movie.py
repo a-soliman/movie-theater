@@ -11,6 +11,7 @@ class MovieModel():
     
     def json(self):
         return {
+                "_id": str(self._id),
                 "title": self.title,
                 "story_line": self.story_line,
                 "poster": self.poster,
@@ -23,7 +24,7 @@ class MovieModel():
         movies = []
 
         for movie in movies_collection.find():
-            movie = MovieModel(movie['title'], movie['story_line'], movie['poster'], movie['trailer_link'])
+            movie = MovieModel( movie['_id'], movie['title'], movie['story_line'], movie['poster'], movie['trailer_link'])
             movies.append(movie)
         return movies
     
