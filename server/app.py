@@ -9,7 +9,7 @@ app = Flask(__name__)
 api = Api(app)
 
 api.add_resource(Movies_List, '/')
-api.add_resource(Movie, '/<string:id>')
+api.add_resource(Movie, '/<string:_id>')
 
 if __name__ == '__main__':
     print('Working...')
