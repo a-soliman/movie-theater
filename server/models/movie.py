@@ -54,4 +54,8 @@ class MovieModel():
         result = movies_collection.remove({'_id': ObjectId(self._id)})
         return result
     
-    
+    def update_in_db(self):
+        movies_collection = db.movies
+        movies_collection.update({'_id': ObjectId(self._id)}, {'$set': {"title": self.title, "story_line": self.story_line, "poster": self.poster, "trailer_link": self.trailer_link}})
+        return 
+        
