@@ -19,6 +19,10 @@ class MovieModel():
             }
 
     @classmethod
+    def is_valid_id(cls, _id):
+        return ObjectId.is_valid(_id)
+        
+    @classmethod
     def get_all_movies(cls):
         movies_collection = db.movies
         movies = []
