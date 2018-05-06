@@ -8,20 +8,11 @@ class MovieModel():
         self.story_line = story_line
         self.poster = poster
         self.trailer_link = trailer_link
-    
-    def json(self):
-        return {
-                "_id": str(self._id),
-                "title": self.title,
-                "story_line": self.story_line,
-                "poster": self.poster,
-                "trailer_link": self.trailer_link
-            }
 
     @classmethod
     def is_valid_id(cls, _id):
         return ObjectId.is_valid(_id)
-        
+
     @classmethod
     def get_all_movies(cls):
         movies_collection = db.movies
@@ -43,3 +34,17 @@ class MovieModel():
             return None
         
         return movie
+
+    def json(self):
+        return {
+                "_id": str(self._id),
+                "title": self.title,
+                "story_line": self.story_line,
+                "poster": self.poster,
+                "trailer_link": self.trailer_link
+            }
+    
+    def save_to_db(self):
+        movies_collection = db.movies
+        movie_id = movies_collection.insert({"title": self.title, "story_line": self.story_line, "poster": self.poster, "trailer_link": self.trailer_link})
+        return movie_id
