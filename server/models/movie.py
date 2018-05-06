@@ -48,3 +48,10 @@ class MovieModel():
         movies_collection = db.movies
         movie_id = movies_collection.insert({"title": self.title, "story_line": self.story_line, "poster": self.poster, "trailer_link": self.trailer_link})
         return movie_id
+    
+    def delete_from_db(self):
+        movies_collection = db.movies
+        result = movies_collection.remove({'_id': ObjectId(self._id)})
+        return result
+    
+    
