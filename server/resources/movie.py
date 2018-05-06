@@ -1,10 +1,10 @@
-from flask_restful import Resource, reqparser
+from flask_restful import Resource, reqparse
 
 from models.movie import MovieModel
 
 class Movie(Resource):
     # the following will parse json data passed with the requist if any
-    parser = reqparser.RequestParser()
+    parser = reqparse.RequestParser()
 
     parser.add_argument('title', 
         type = str,
@@ -29,15 +29,21 @@ class Movie(Resource):
         required = True,
         help = 'a URL to Movie video trailer is required.'
     )
+
+    def get(self, _id):
+        if not MovieModel.is_valid_id(_id):
+            return {'message': 'Invaid Id'}, 400
+        
+        movie = MovieModel.find_by_id(_id)
+        if movie:
+            return movie.json()
+        return {'message': 'Not Found'}, 404
     
-    def get(self):
+    def post(self, _id):
         pass
     
-    def post(self):
+    def put(self, _id):
         pass
     
-    def put(self):
-        pass
-    
-    def delete(self):
+    def delete(self, _id):
         pass
