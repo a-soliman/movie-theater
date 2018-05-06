@@ -53,4 +53,15 @@ class Movie(Resource):
         pass
     
     def delete(self, _id):
-        pass
+        if not MovieModel.is_valid_id(_id):
+            return {'message': 'Invaid Id'}, 400
+        
+        movie = MovieModel.find_by_id(_id)
+        if movie is None:
+            return {'message': 'Movie was not found'}, 404
+        
+        try:
+            movie.delete_from_db()
+        except:
+            return {'message': 'An error has occurred'}, 500
+        return {'message': 'Deleted'}
