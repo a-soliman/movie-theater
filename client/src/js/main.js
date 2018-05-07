@@ -1,6 +1,6 @@
-
 $(document).ready(() => {
     
+    /* Movie Card animations */    
     $('.movie').on('mouseenter', function() {
         $(this).find('.details').stop().animate({
             "top": "122px"
