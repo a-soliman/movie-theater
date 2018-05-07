@@ -3,14 +3,14 @@ $(document).ready(() => {
     
     $('.movie').on('mouseenter', function() {
         $(this).find('.details').stop().animate({
-            "top": "-115px"
+            "top": "122px"
             
         }, 200)
     })
 
     $('.movie').on('mouseleave', function() {
         $(this).find('.details').stop().animate({
-            "top": "0px"
+            "top": "360px"
         }, 200)
     })
 })
