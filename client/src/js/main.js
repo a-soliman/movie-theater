@@ -1,3 +1,25 @@
+/* Knockout data binding and templating */
+var viewModel = {
+    movies: ko.observableArray(),
+
+    showDetails: function(data, event) {
+        let detailsContainer = $(event.target).parent().find('.movie .details');
+        console.log(detailsContainer)
+        $(detailsContainer).stop().animate({
+            "top": "122px"
+            
+        }, 200)
+    },
+    
+    hideDetails: function(data, event) {
+        let detailsContainer = $(event.target).parent().find('.movie .details');
+
+        $(detailsContainer).stop().animate({
+            "top": "360px"
+        }, 200);
+    }
+}
+
 function fetchMovies() {
     fetch('http://localhost:5000')
         .then( function(response) {
@@ -6,7 +28,9 @@ function fetchMovies() {
                 return
             }
             response.json().then(function(data) {
-                console.log(data)
+
+                //append the movies to the viewModel
+                viewModel.movies(data.movies)
             })
         })
         .catch( function( err ) {
@@ -14,21 +38,6 @@ function fetchMovies() {
         })
 }
 
-$(document).ready(() => {
-    
-    /* Movie Card animations */    
-    $('.movie').on('mouseenter', function() {
-        $(this).find('.details').stop().animate({
-            "top": "122px"
-            
-        }, 200)
-    })
 
-    $('.movie').on('mouseleave', function() {
-        $(this).find('.details').stop().animate({
-            "top": "360px"
-        }, 200)
-    })
+ko.applyBindings(viewModel)
 
-    
-})
