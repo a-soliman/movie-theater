@@ -19,7 +19,7 @@ nav {
 	overflow: hidden;
 	width: 300px;
 	height: 443px;
-	background: url('../img/poster.png'), no-repeat;
+	background-repeat: no-repeat;
 	background-size: cover;
 
 	.details {
@@ -29,4 +29,11 @@ nav {
 		top: 360px;
 		padding: 115px 10px 5px 10px;
 	}
+}
+
+.movie-overlay {
+	width: 300px;
+	height: 443px;
+	position: relative;
+	top: -443px;
 }
