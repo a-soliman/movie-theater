@@ -2,7 +2,11 @@
 @import "./partials/vars";
 
 body {
-	background: $white;
+	background: $dark-grey;
+}
+
+.container {
+	background: $dark-red;
 }
 
 .movie {
