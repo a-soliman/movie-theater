@@ -29,3 +29,6 @@ deadpool_2 = MovieModel(
     'http://t2.gstatic.com/images?q=tbn:ANd9GcTkbXNbwGV0npOKCGSndE-YCGpRb2xQDRV8VyMfGlsEfej-sVMv',
     'https://youtu.be/20bpjtCbCz0'
     )
+
+avengers_infinity_war.save_to_db()
+deadpool_2.save_to_db()
