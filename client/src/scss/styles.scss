@@ -5,7 +5,13 @@ body {
 	background: $dark-grey;
 }
 
-.container {
+nav {
+	border-bottom: 2px solid red;
+	border-radius: 25px;
+	background: $dark-grey;
+}
+
+.main-container {
 	background: $dark-red;
 }
 
