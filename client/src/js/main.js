@@ -2,6 +2,7 @@
 var viewModel = {
     movies: ko.observableArray(),
 
+    /* Animations for the movie details card ON */
     showDetails: function(data, event) {
         let detailsContainer = $(event.target).parent().find('.movie .details');
         console.log(detailsContainer)
@@ -10,7 +11,8 @@ var viewModel = {
             
         }, 200)
     },
-    
+
+    /* Animations for the movie details card OFF */
     hideDetails: function(data, event) {
         let detailsContainer = $(event.target).parent().find('.movie .details');
 
@@ -20,6 +22,7 @@ var viewModel = {
     }
 }
 
+/* Fetch Requiest to to the REST API to get a list of movies */
 function fetchMovies() {
     fetch('http://localhost:5000')
         .then( function(response) {
