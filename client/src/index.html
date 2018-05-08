@@ -33,30 +33,15 @@
 	</nav>
 
 	<div class="container main-container my-5 py-5">
-		<div class="row ">
-			<div class="col-lg-4 col-md-6 align-middle my-3">
-				<div class="movie m-auto">
+		<div class="row" data-bind="foreach: movies">
+			<div class="col-lg-4 col-md-6 align-middle my-3 hide-overflow">
+				<div class="movie m-auto" data-bind="style: { backgroundImage: 'url(\'' + poster + '\')' }">
 					<div class="details">
-						<h4>Lorem ipsum dolor sit.</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, cupiditate?</p>
+						<h4 data-bind="text: title"></h4>
+						<p data-bind="text: story_line"></p>
 					</div>
 				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 align-middle my-3">
-				<div class="movie m-auto">
-					<div class="details">
-						<h4>Lorem ipsum dolor sit.</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, cupiditate?</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 align-middle my-3">
-				<div class="movie m-auto">
-					<div class="details">
-						<h4>Lorem ipsum dolor sit.</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, cupiditate?</p>
-					</div>
-				</div>
+				<div class="m-auto movie-overlay" data-bind="event: {mouseover: $parent.showDetails, mouseout: $parent.hideDetails}"></div>
 			</div>
 		</div>
 		
@@ -65,6 +50,7 @@
 	<script src="./js/jquery.min.js"></script>
 	<script src="./js/popper.min.js"></script>
 	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/knockout-latest.js"></script>
 	<script src="./js/main.js"></script>
 </body>
 </html>
