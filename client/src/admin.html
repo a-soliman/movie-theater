@@ -64,99 +64,54 @@
 	<section id="posts">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-9">
+				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
-							<h4>Latest Posts</h4>
+							<h4>Latest Movies</h4>
 						</div>
 						<table class="table table-striped">
 							<thead class="thead-dark">
 								<tr>
-									<th>#</th>
 									<th>Title</th>
-									<th>Category</th>
-									<th>Date Posted</th>
-									<th></th>
+									<th>Story Line</th>
+									<th>Poster</th>
+									<th>Trailer Link</th>
+									<th>Edit</th>
+									<th>Delete</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody data-bind="foreach: movies">
 								<tr>
-									<td scope="row">1</td>
-									<td>Post One</td>
-									<td>Web Development</td>
-									<td>April 30, 2017</td>
+									<td data-bind="text: title"></td>
+									<td data-bind="text: $parent.limitStoryLineCopy($data)"></td>
 									<td>
-										<a href="details.html" class="btn btn-secondary">
-											<i class="fa fa-angle-double-right"></i>
-											Details
+											<img class="img-thumbnail" data-bind="attr: {src: poster}">
+									</td>
+									<td >
+										<a href="">
+											<i class="fa fa-play"></i>
 										</a>
 									</td>
-								</tr>
-								<tr>
-									<td scope="row">2</td>
-									<td>Post Two</td>
-									<td>Health & Wellness</td>
-									<td>April 30, 2017</td>
 									<td>
-										<a href="details.html" class="btn btn-secondary">
-											<i class="fa fa-angle-double-right"></i>
-											Details
-										</a>
+										<button class="btn btn-warning btn-sm">
+											<i class="fa fa-edit"></i>
+										</button>
+									</td>
+									<td>
+										<button class="btn btn-danger btn-sm">
+											<i class="fa fa-trash"></i>
+										</button>
 									</td>
 								</tr>
-								<tr>
-									<td scope="row">3</td>
-									<td>Post Three</td>
-									<td>Business</td>
-									<td>April 30, 2017</td>
-									<td>
-										<a href="details.html" class="btn btn-secondary">
-											<i class="fa fa-angle-double-right"></i>
-											Details
-										</a>
-									</td>
-								</tr>
-								<tr>
-									<td scope="row">4</td>
-									<td>Post Four</td>
-									<td>Web Development</td>
-									<td>April 30, 2017</td>
-									<td>
-										<a href="details.html" class="btn btn-secondary">
-											<i class="fa fa-angle-double-right"></i>
-											Details
-										</a>
-									</td>
-								</tr>
-								<tr>
-									<td scope="row">5</td>
-									<td>Post Five</td>
-									<td>Web Development</td>
-									<td>April 30, 2017</td>
-									<td>
-										<a href="details.html" class="btn btn-secondary">
-											<i class="fa fa-angle-double-right"></i>
-											Details
-										</a>
-									</td>
-								</tr>
-								<tr>
-									<td scope="row">6</td>
-									<td>Post Six</td>
-									<td>Tech Gadgets</td>
-									<td>April 30, 2017</td>
-									<td>
-										<a href="details.html" class="btn btn-secondary">
-											<i class="fa fa-angle-double-right"></i>
-											Details
-										</a>
-									</td>
-								</tr>
+								
 
 							</tbody>
 						</table>
 					</div>
 				</div>
+			</div>
+
+			<div class="row"></div>
 				<div class="col-md-3">
 					<div class="card text-center bg-primary text-white mb-3">
 						<div class="card-body">
@@ -316,11 +271,8 @@
 
 	<script src="./js/jquery.min.js"></script>
 	<script src="./js/popper.min.js"></script>
-	<script src="./js/bootstrap.min.js"></script>
-	<script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
-	<script>
-		CKEDITOR.replace( 'editor1' );
-	</script>
+	<script src="./js/bootstrap.min.js"></script>>
+	<script src="./js/knockout-latest.js"></script>
 	<script src="./js/main.js"></script>
 </body>
 </html>
