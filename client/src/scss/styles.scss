@@ -22,6 +22,16 @@ nav {
 	background-repeat: no-repeat;
 	background-size: cover;
 
+	.fa {
+		position: relative;
+		top: 122px;
+		left: 104px;
+		font-size: 95px;
+		color: #ff3636;
+		opacity: 0;
+		z-index: 10;
+	}
+
 	.details {
 		background: url('../img/bg.png');
 		height: 320px;
@@ -36,4 +46,7 @@ nav {
 	height: 443px;
 	position: relative;
 	top: -443px;
+	z-index: 100;
+
+	
 }
