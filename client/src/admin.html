@@ -159,13 +159,13 @@
 
 
 	<!-- =========== MODALS =========== -->
-	<!-- POST MODAL -->
+	<!-- ADD MOVIE -->
 	<div class="modal fade" id="addPostModal">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header bg-primary text-white">
-					<h5 class="modal-title">Add Post</h5>
-					<button class="close" data-dismiss="modal">
+					<h5 class="modal-title">Add Movie</h5>
+					<button class="close btn-white text-white" data-dismiss="modal">
 						<span>&times;</span>
 					</button>
 				</div>
@@ -176,23 +176,21 @@
 							<input type="text" class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="category">Category</label>
-							<select class="form-control">
-								<option value="">Web Development</option>
-								<option value="">Tech Gadgets</option>
-								<option value="">Bussiness</option>
-								<option value="">Health & Wellness</option>
-							</select>
+							<label for="story_line">Story Line</label>
+							<textarea id="story_line" name="story_line" rows="3" class="form-control"></textarea>
 						</div>
+
 						<div class="form-group">
-							<label for="file">Image</label>
-							<input type="file" class="form-control-file">
-							<small class="form-text text-muted">Max Size 3mb</small>
+							<label for="poster">Poster Link</label>
+							<input type="text" class="form-control" name="poster" id="poster">
 						</div>
+
 						<div class="form-group">
-							<label for="body"></label>
-							<textarea name="editor1" rows="3" class="form-control"></textarea>
+							<label for="trailer_link">Trailer Link</label>
+							<input type="text" class="form-control" name="trailer_link" id="trailer_link">
 						</div>
+						
+						
 					</form>
 				</div>
 				<div class="modal-footer">
