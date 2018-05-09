@@ -174,21 +174,69 @@
 						
 							<div class="form-group">
 								<label for="title">Title</label>
-								<input type="text" class="form-control">
+								<input 
+									type="text" 
+									class="form-control"
+									data-bind="value: addMovieInputs.title.value"
+								>
+								<!-- VALIDATION ERROR CONTAINER -->
+								<div 
+									class="validation-error alert alert-danger" 
+									data-bind="visible: addMovieInputs.title.valid() === false">
+									Validation Error
+								</div>
 							</div>
 							<div class="form-group">
 								<label for="story_line">Story Line</label>
-								<textarea id="story_line" name="story_line" rows="3" class="form-control"></textarea>
+								<textarea 
+									id="story_line" 
+									name="story_line" 
+									rows="3" 
+									class="form-control"
+									data-bind="value: addMovieInputs.story_line.value"
+								>
+								</textarea>
+								<!-- VALIDATION ERROR CONTAINER -->
+								<div 
+									class="validation-error alert alert-danger" 
+									data-bind="visible: addMovieInputs.story_line.valid() === false">
+									Validation Error
+								</div>
+								
 							</div>
 
 							<div class="form-group">
 								<label for="poster">Poster Link</label>
-								<input type="text" class="form-control" name="poster" id="poster">
+								<input 
+									type="text" 
+									class="form-control" 
+									name="poster" 
+									id="poster"
+									data-bind="value:addMovieInputs.poster.value"
+								>
+								<!-- VALIDATION ERROR CONTAINER -->
+								<div 
+									class="validation-error alert alert-danger" 
+									data-bind="visible: addMovieInputs.poster.valid() === false">
+									Validation Error
+								</div>
 							</div>
 
 							<div class="form-group">
 								<label for="trailer_link">Trailer Link</label>
-								<input type="text" class="form-control" name="trailer_link" id="trailer_link">
+								<input 
+									type="text" 
+									class="form-control" 
+									name="trailer_link" 
+									id="trailer_link"
+									data-bind="value: addMovieInputs.trailer_link.value"
+								>
+								<!-- VALIDATION ERROR CONTAINER -->
+								<div 
+									class="validation-error alert alert-danger" 
+									data-bind="visible: addMovieInputs.trailer_link.valid() === false">
+									Validation Error
+								</div>
 							</div>
 							
 							
