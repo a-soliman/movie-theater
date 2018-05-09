@@ -193,7 +193,7 @@
 									name="story_line" 
 									rows="3" 
 									class="form-control"
-									data-bind="value: addMovieInputs.story_line.value, , valueUpdate: 'afterkeydown', event: {'keyup': validateAddMovieInputs.validateStory_line}"
+									data-bind="value: addMovieInputs.story_line.value, valueUpdate: 'afterkeydown', event: {'keyup': validateAddMovieInputs.validateStory_line}"
 								>
 								</textarea>
 								<!-- VALIDATION ERROR CONTAINER -->
@@ -212,7 +212,7 @@
 									class="form-control" 
 									name="poster" 
 									id="poster"
-									data-bind="value:addMovieInputs.poster.value"
+									data-bind="value:addMovieInputs.poster.value, valueUpdate: 'afterkeydown', event: {'keyup': validateAddMovieInputs.validatePoster}"
 								>
 								<!-- VALIDATION ERROR CONTAINER -->
 								<div 

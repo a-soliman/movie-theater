@@ -125,6 +125,23 @@ var viewModel = {
             }
             story_line.valid(true);
             return;
+        },
+        validatePoster: () => {
+            let poster = viewModel.addMovieInputs.poster;
+
+            if ( poster.value().length < 1 ){
+                poster.valid(false);
+                return
+            }
+            // validate  URL regex
+            let expression = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm
+            let regex = new RegExp(expression);
+            if ( !poster.value().match(regex) ) {
+                poster.valid(false);
+                return
+            }
+            poster.valid(true);
+            return;
         }
     }
 
