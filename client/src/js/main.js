@@ -11,7 +11,6 @@ var viewModel = {
         }, 200);
 
         let playButton = $(event.target).parent().find('.movie .fa');
-        console.log(playButton)
         $(playButton).stop().animate({
             opacity: 1
         }, 400);
@@ -26,10 +25,20 @@ var viewModel = {
         }, 200);
 
         let playButton = $(event.target).parent().find('.movie .fa');
-        console.log(playButton)
         $(playButton).stop().animate({
             opacity: 0
         }, 400);
+    },
+
+    showTrailerBox: function(data, event) {
+        let theModal = $(event.target).parent(0).data('target')
+        let videoSRC = $(event.target).parent(0).attr('data-video');
+        let videoSRCauto = videoSRC + "?modestbranding=1&rel=0&controls=0&showinfo=0&html5=1&autoplay=1";
+        $(theModal + ' iframe').attr('src', videoSRCauto);
+        $(theModal + ' button.close').click(function () {
+            $(theModal + ' iframe').attr('src', videoSRC);
+        });
+
     }
 }
 
@@ -54,4 +63,5 @@ function fetchMovies() {
 
 
 ko.applyBindings(viewModel)
+
 
