@@ -115,6 +115,16 @@ var viewModel = {
             }
             title.valid(true);
             return;
+        },
+        validateStory_line: () => {
+            let story_line = viewModel.addMovieInputs.story_line;
+
+            if ( story_line.value().length < 1 ){
+                story_line.valid(false);
+                return
+            }
+            story_line.valid(true);
+            return;
         }
     }
 
