@@ -65,11 +65,13 @@ var viewModel = {
         console.log(_id)
     },
 
+    /* Triggers the DELETE API call */
     removeMovie: (data, event) => {
         let _id = data._id;
         deleteMovie(_id)
     },
 
+    /* Removes the movie locally after a successful DELETE call to the server */
     removeMovieLocally: (_id) => {
         for ( let i = 0; i < viewModel.movies().length; i++ ) {
             let movie = viewModel.movies()[i];
