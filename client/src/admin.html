@@ -177,7 +177,7 @@
 								<input 
 									type="text" 
 									class="form-control"
-									data-bind="value: addMovieInputs.title.value"
+									data-bind="value: addMovieInputs.title.value, valueUpdate: 'afterkeydown', event: {'keyup': validateAddMovieInputs.validateTitle}"
 								>
 								<!-- VALIDATION ERROR CONTAINER -->
 								<div 

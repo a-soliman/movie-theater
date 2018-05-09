@@ -88,7 +88,7 @@ var viewModel = {
     addMovieInputs: {
         title : {
             value: ko.observable('This is a title'),
-            valid: ko.observable(false)
+            valid: ko.observable()
         },
         story_line: {
             value: ko.observable('This is a story line'),
@@ -101,6 +101,20 @@ var viewModel = {
         trailer_link: {
             value: ko.observable('This is a trailer link'),
             valid: ko.observable()
+        }
+    },
+
+    validateAddMovieInputs: {
+        validateTitle: () => {
+            let title = viewModel.addMovieInputs.title;
+
+            if ( title.value().length < 1 ) {
+                console.log(title.value().length)
+                title.valid(false);
+                return;
+            }
+            title.valid(true);
+            return;
         }
     }
 
