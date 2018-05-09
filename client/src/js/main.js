@@ -55,6 +55,11 @@ var viewModel = {
         return trimedStory_line;
     },
 
+    addMovie: (formElement) => {
+        console.log('Add clicked')
+        console.log(formElement)
+    },
+
     editMovie: (data, event) => {
         let _id = data._id;
         console.log(_id)
