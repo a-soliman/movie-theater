@@ -5,11 +5,16 @@ var viewModel = {
     /* Animations for the movie details card ON */
     showDetails: function(data, event) {
         let detailsContainer = $(event.target).parent().find('.movie .details');
-        console.log(detailsContainer)
         $(detailsContainer).stop().animate({
-            "top": "122px"
+            "top": "30px"
             
-        }, 200)
+        }, 200);
+
+        let playButton = $(event.target).parent().find('.movie .fa');
+        console.log(playButton)
+        $(playButton).stop().animate({
+            opacity: 1
+        }, 400);
     },
 
     /* Animations for the movie details card OFF */
@@ -19,6 +24,12 @@ var viewModel = {
         $(detailsContainer).stop().animate({
             "top": "360px"
         }, 200);
+
+        let playButton = $(event.target).parent().find('.movie .fa');
+        console.log(playButton)
+        $(playButton).stop().animate({
+            opacity: 0
+        }, 400);
     }
 }
 
