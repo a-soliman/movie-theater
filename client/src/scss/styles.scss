@@ -6,10 +6,13 @@ body {
 	background: $dark-grey;
 }
 
-nav {
+nav.home-nav {
 	border-bottom: 2px solid red;
 	border-radius: 25px;
 	background: $dark-grey;
+}
+
+nav.admin-nav {
 }
 
 .main-container {
