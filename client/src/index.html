@@ -36,12 +36,15 @@
 		<div class="row" data-bind="foreach: movies">
 			<div class="col-lg-4 col-md-6 align-middle my-3 hide-overflow">
 				<div class="movie m-auto" data-bind="style: { backgroundImage: 'url(\'' + poster + '\')' }">
+					<i class="fa fa-play-circle"></i>
 					<div class="details">
 						<h4 data-bind="text: title"></h4>
 						<p data-bind="text: story_line"></p>
 					</div>
 				</div>
-				<div class="m-auto movie-overlay" data-bind="event: {mouseover: $parent.showDetails, mouseout: $parent.hideDetails}"></div>
+				<div class="m-auto movie-overlay" data-bind="event: {mouseover: $parent.showDetails, mouseout: $parent.hideDetails}">
+					
+				</div>
 			</div>
 		</div>
 		
