@@ -46,7 +46,7 @@
 							<i class="fa fa-play-circle"></i>
 							<div class="details">
 								<h4 data-bind="text: title"></h4>
-								<p data-bind="text: story_line"></p>
+								<p data-bind="text: $parent.limitStoryLineCopy($data)"></p>
 							</div>
 						</div>
 						<div class="m-auto movie-overlay" data-bind="event: {mouseover: $parent.showDetails, mouseout: $parent.hideDetails}"></div>

@@ -39,6 +39,18 @@ var viewModel = {
             $(theModal + ' iframe').attr('src', videoSRC);
         });
 
+    },
+
+    /* Limits the displayed story_line text to 210 chars. */
+    limitStoryLineCopy: (data) => {
+        let story_line = data.story_line;
+
+        if ( story_line.length <= 210 ) {
+            return story_line
+        }
+        let trimedStory_line = story_line.substring(0, 210);
+        trimedStory_line += '...';
+        return trimedStory_line;
     }
 }
 
