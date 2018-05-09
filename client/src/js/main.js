@@ -87,29 +87,32 @@ var viewModel = {
     /* Values of the addMovie form */
     addMovieInputs: {
         title : {
-            value: ko.observable('This is a title'),
+            value: ko.observable(),
             valid: ko.observable()
         },
         story_line: {
-            value: ko.observable('This is a story line'),
+            value: ko.observable(),
             valid: ko.observable()
         },
         poster: {
-            value: ko.observable('This is a poster'),
+            value: ko.observable(),
             valid: ko.observable()
         },
         trailer_link: {
-            value: ko.observable('This is a trailer link'),
+            value: ko.observable(),
             valid: ko.observable()
         }
     },
 
+    /* 
+        A SET OF FUNCTIONS TO VALIDATE EACH INPUT FIELD
+        IN THE ADD MOVIE FORM
+    */
     validateAddMovieInputs: {
         validateTitle: () => {
             let title = viewModel.addMovieInputs.title;
 
             if ( title.value().length < 1 ) {
-                console.log(title.value().length)
                 title.valid(false);
                 return;
             }
@@ -142,64 +145,25 @@ var viewModel = {
             }
             poster.valid(true);
             return;
+        },
+        validateTrailer_link: () => {
+            let trailer_link = viewModel.addMovieInputs.trailer_link;
+
+            if ( trailer_link.value().length < 1 ){
+                trailer_link.valid(false);
+                return
+            }
+            // validate  URL regex
+            let expression = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm
+            let regex = new RegExp(expression);
+            if ( !trailer_link.value().match(regex) ) {
+                trailer_link.valid(false);
+                return
+            }
+            trailer_link.valid(true);
+            return;
         }
     }
-
-    // validateAddMovieInputs: {
-    //     inputs: viewModel.addMovieInputs,
-
-    //     validateTitle: function() {
-    //         let title = inputs.title;
-            
-    //         if ( title.value().trim().length < 1 ) {
-    //             title.valid(false);
-    //         }
-    //     }
-    // },
-
-    // /* Validate addMovie Form Inputs */
-    // validateAddMovieInputs101: () => {
-    //     let inputs          = viewModel.addMovieInputs;
-
-    //     let title           = inputs.title;
-    //     let story_line      = inputs.story_line;
-    //     let poster          = inuts.poster;
-    //     let trailer_link    = inputs.trailer_link;
-
-    //     // Validate *title*
-        
-       
-
-    //     // Validate *story_line*
-    //     if ( story_line.value().trim().length < 20 ) {
-    //         story_line.valid(false);
-    //     }
-
-    //     // Validate *poster*
-    //     if ( poster.value().trim().length < 1) {
-    //         poster.valid(false);
-    //     }
-        
-    //     let expression = "/(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/";
-    //     let regex = new RegExp(expression);
-    //     if ( !poster.value().match(regex) ) {
-    //         poster.valid(false)
-    //     }
-
-    //     // Validate *trailer_link*
-    //     if ( trailer_link.value().trim().length < 1) {
-    //         trailer_link.valid(false);
-    //     }
-
-    //     expression = "/(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/";
-    //     regex = new RegExp(expression);
-    //     if ( !trailer_link.value().match(regex) ) {
-    //         trailer_link.valid(false)
-    //     }
-
-
-    // }
-
 }
 
 /* Fetch GET Requiest to to the REST API to get a list of movies */

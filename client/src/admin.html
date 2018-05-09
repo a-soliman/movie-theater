@@ -229,7 +229,7 @@
 									class="form-control" 
 									name="trailer_link" 
 									id="trailer_link"
-									data-bind="value: addMovieInputs.trailer_link.value"
+									data-bind="value: addMovieInputs.trailer_link.value, valueUpdate: 'afterkeydown', event: {'keyup': validateAddMovieInputs.validateTrailer_link}"
 								>
 								<!-- VALIDATION ERROR CONTAINER -->
 								<div 
