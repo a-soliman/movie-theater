@@ -55,11 +55,6 @@ var viewModel = {
         return trimedStory_line;
     },
 
-    addMovie: (formElement) => {
-        console.log('Add clicked')
-        console.log(formElement)
-    },
-
     editMovie: (data, event) => {
         let _id = data._id;
         console.log(_id)
@@ -82,7 +77,88 @@ var viewModel = {
                 return;
             }
         }
+    },
+
+    addMovie: (formElement) => {
+        console.log('Add clicked')
+        console.log(formElement)
+    },
+
+    /* Values of the addMovie form */
+    addMovieInputs: {
+        title : {
+            value: ko.observable('This is a title'),
+            valid: ko.observable(false)
+        },
+        story_line: {
+            value: ko.observable('This is a story line'),
+            valid: ko.observable()
+        },
+        poster: {
+            value: ko.observable('This is a poster'),
+            valid: ko.observable()
+        },
+        trailer_link: {
+            value: ko.observable('This is a trailer link'),
+            valid: ko.observable()
+        }
     }
+
+    // validateAddMovieInputs: {
+    //     inputs: viewModel.addMovieInputs,
+
+    //     validateTitle: function() {
+    //         let title = inputs.title;
+            
+    //         if ( title.value().trim().length < 1 ) {
+    //             title.valid(false);
+    //         }
+    //     }
+    // },
+
+    // /* Validate addMovie Form Inputs */
+    // validateAddMovieInputs101: () => {
+    //     let inputs          = viewModel.addMovieInputs;
+
+    //     let title           = inputs.title;
+    //     let story_line      = inputs.story_line;
+    //     let poster          = inuts.poster;
+    //     let trailer_link    = inputs.trailer_link;
+
+    //     // Validate *title*
+        
+       
+
+    //     // Validate *story_line*
+    //     if ( story_line.value().trim().length < 20 ) {
+    //         story_line.valid(false);
+    //     }
+
+    //     // Validate *poster*
+    //     if ( poster.value().trim().length < 1) {
+    //         poster.valid(false);
+    //     }
+        
+    //     let expression = "/(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/";
+    //     let regex = new RegExp(expression);
+    //     if ( !poster.value().match(regex) ) {
+    //         poster.valid(false)
+    //     }
+
+    //     // Validate *trailer_link*
+    //     if ( trailer_link.value().trim().length < 1) {
+    //         trailer_link.valid(false);
+    //     }
+
+    //     expression = "/(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/";
+    //     regex = new RegExp(expression);
+    //     if ( !trailer_link.value().match(regex) ) {
+    //         trailer_link.valid(false)
+    //     }
+
+
+    // }
+
 }
 
 /* Fetch GET Requiest to to the REST API to get a list of movies */
