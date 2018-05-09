@@ -1,6 +1,8 @@
 /* Knockout data binding and templating */
 var viewModel = {
     movies: ko.observableArray(),
+    successMessage: ko.observable(),
+    failuerMessage: ko.observable(),
 
     /* Animations for the movie details card ON */
     showDetails: function(data, event) {
@@ -51,15 +53,40 @@ var viewModel = {
         let trimedStory_line = story_line.substring(0, 210);
         trimedStory_line += '...';
         return trimedStory_line;
+    },
+
+    editMovie: (data, event) => {
+        let _id = data._id;
+        console.log(_id)
+    },
+
+    removeMovie: (data, event) => {
+        let _id = data._id;
+        deleteMovie(_id)
+    },
+
+    removeMovieLocally: (_id) => {
+        for ( let i = 0; i < viewModel.movies().length; i++ ) {
+            let movie = viewModel.movies()[i];
+
+            if ( movie._id == _id ) {
+                viewModel.movies.remove(movie)
+                console.log('Removed locallay')
+                return;
+            }
+        }
     }
 }
 
-/* Fetch Requiest to to the REST API to get a list of movies */
+/* Fetch GET Requiest to to the REST API to get a list of movies */
 function fetchMovies() {
     fetch('http://localhost:5000')
         .then( function(response) {
             if (response.status !== 200 ) {
                 console.log('Looks like the backend server is not running on port 5000. ' + response.status);
+                response.json().then( ( data ) => {
+                    viewModel.failuerMessage(data.message)
+                })
                 return
             }
             response.json().then(function(data) {
@@ -73,6 +100,26 @@ function fetchMovies() {
         })
 }
 
+
+/* Fetch GET Requiest to to the REST API to get a list of movies */
+function deleteMovie(_id) {
+    return fetch(`http://localhost:5000/${_id}`, {
+        method: 'delete'
+    })
+    .then ( ( response ) => {
+        if (response.status !== 200 ) {
+            console.log('Looks like the backend server is not running on port 5000. ' + response.status);
+            response.json().then( ( data ) => {
+                viewModel.failuerMessage(data.message)
+            })
+            return
+        }
+        response.json().then( ( data ) => {
+            viewModel.successMessage(data.message)
+            viewModel.removeMovieLocally(_id);
+        })
+    })
+}
 
 ko.applyBindings(viewModel)
 
