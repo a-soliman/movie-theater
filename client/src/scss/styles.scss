@@ -1,5 +1,6 @@
-@import "./reset/basic-reset";
 @import "./partials/vars";
+@import "./reset/basic-reset";
+
 
 body {
 	background: $dark-grey;
@@ -38,18 +39,6 @@ nav {
 		position: relative;
 		top: 360px;
 		padding: 115px 10px 5px 10px;
-
-		h4, p {
-			font-family: $font-roboto;
-		}
-
-		h4 {
-			font-weight: 700;
-		}
-
-		p {
-			font-weight: 500;
-		}
 	}
 
 	h4 {
