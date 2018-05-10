@@ -7,6 +7,7 @@ from resources.movies_list import Movies_List
 app = Flask(__name__)
 api = Api(app)
 
+# Allows Origin for the front end to interact.
 @app.after_request
 def after_request(response):
     response.headers.add('Access-Control-Allow-Origin', '*')

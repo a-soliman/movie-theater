@@ -9,6 +9,7 @@ class Movies_List(Resource):
         '''
         movies = MovieModel.get_all_movies()
 
+        # if less movies in db will add 3 movies for testing..
         if (len(movies) < 2):
             save_test_movies()
 
