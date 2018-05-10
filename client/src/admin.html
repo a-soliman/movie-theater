@@ -60,98 +60,100 @@
 		</div>
 	</section>
 
-	<!-- POSTS -->
+	<!-- Movies Table -->
 	<section id="posts">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="card">
-						<div class="card-header">
-							<h4>Latest Movies</h4>
-						</div>
-						<table class="table table-striped align-middle" >
-							<thead class="thead-dark">
-								<tr>
-									<th>Title</th>
-									<th>Story Line</th>
-									<th>Poster</th>
-									<th>Trailer</th>
-									<th>Edit</th>
-									<th>Delete</th>
-								</tr>
-							</thead>
-							<tbody data-bind="foreach: movies">
-								<tr>
-									<td class="align-middle" data-bind="text: title"></td>
-									<td class="align-middle" data-bind="text: $parent.limitStoryLineCopy($data)"></td>
-									<td class="align-middle" align="center">
-											<img class="img-thumbnail" data-bind="attr: {src: poster}">
-									</td>
-									<td class="align-middle" align="center">
-										<a href="" >
-											<i class="fa fa-play-circle text-danger"></i>
-										</a>
-									</td>
-									<td class="align-middle" align="center">
-										<button class="btn btn-warning btn-sm" data-bind="click: $parent.setEditableMovieValues" data-toggle="modal" data-target="#editMovieModal">
-											<i class="fa fa-edit"></i>
-										</button>
-									</td>
-									<td class="align-middle" align="center">
-										<button class="btn btn-danger btn-sm" data-bind="click: $parent.removeMovie">
-											<i class="fa fa-trash"></i>
-										</button>
-									</td>
-								</tr>
-								
-
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-
-			<div class="row"></div>
-				<div class="col-md-3">
-					<div class="card text-center bg-primary text-white mb-3">
-						<div class="card-body">
-							<h3>Posts</h3>
-							<h1 class="display-1">
-								<i class="fa fa-pencil"></i> 6
-							</h1>
-							<a href="posts.html" class="btn btn-outline-light btn-sm btn-block"> View</a>
-						</div>
-					</div>
-
-					<div class="card text-center bg-success text-white mb-3">
-						<div class="card-body">
-							<h3>Categories</h3>
-							<h1 class="display-1">
-								<i class="fa fa-folder-open-o"></i> 4
-							</h1>
-							<a href="categories.html" class="btn btn-outline-light btn-sm btn-block"> View</a>
-						</div>
-					</div>
-
-					<div class="card text-center bg-warning text-white mb-3">
-						<div class="card-body">
-							<h3>Users</h3>
-							<h1 class="display-1">
-								<i class="fa fa-users"></i> 2
-							</h1>
-							<a href="users.html" class="btn btn-outline-light btn-sm btn-block"> View</a>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header">
+								<h4>Latest Movies</h4>
+							</div>
+							<table class="table table-striped align-middle" >
+								<thead class="thead-dark">
+									<tr>
+										<th>Title</th>
+										<th>Story Line</th>
+										<th>Poster</th>
+										<th>Trailer</th>
+										<th>Edit</th>
+										<th>Delete</th>
+									</tr>
+								</thead>
+								<tbody data-bind="foreach: movies">
+									<tr>
+										<td class="align-middle" data-bind="text: title"></td>
+										<td class="align-middle" data-bind="text: $parent.limitStoryLineCopy($data)"></td>
+										<td class="align-middle" align="center">
+												<img class="img-thumbnail" data-bind="attr: {src: poster}">
+										</td>
+										<td class="align-middle" align="center">
+											<a href="" >
+												<i class="fa fa-play-circle text-danger"></i>
+											</a>
+										</td>
+										<td class="align-middle" align="center">
+											<button class="btn btn-warning btn-sm" data-bind="click: $parent.setEditableMovieValues" data-toggle="modal" data-target="#editMovieModal">
+												<i class="fa fa-edit"></i>
+											</button>
+										</td>
+										<td class="align-middle" align="center">
+											<button class="btn btn-danger btn-sm" data-bind="click: $parent.removeMovie">
+												<i class="fa fa-trash"></i>
+											</button>
+										</td>
+									</tr>
+									
+	
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
+	
+				<div class="row"></div>
+					<div class="col-md-3">
+						<div class="card text-center bg-primary text-white mb-3">
+							<div class="card-body">
+								<h3>Posts</h3>
+								<h1 class="display-1">
+									<i class="fa fa-pencil"></i> 6
+								</h1>
+								<a href="posts.html" class="btn btn-outline-light btn-sm btn-block"> View</a>
+							</div>
+						</div>
+	
+						<div class="card text-center bg-success text-white mb-3">
+							<div class="card-body">
+								<h3>Categories</h3>
+								<h1 class="display-1">
+									<i class="fa fa-folder-open-o"></i> 4
+								</h1>
+								<a href="categories.html" class="btn btn-outline-light btn-sm btn-block"> View</a>
+							</div>
+						</div>
+	
+						<div class="card text-center bg-warning text-white mb-3">
+							<div class="card-body">
+								<h3>Users</h3>
+								<h1 class="display-1">
+									<i class="fa fa-users"></i> 2
+								</h1>
+								<a href="users.html" class="btn btn-outline-light btn-sm btn-block"> View</a>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-	</section>
+		</section>
+	
 
-	<footer id="main-footer" class="bg-dark text-white mt-5 p-5">
+	
+	<footer id="main-footer" class="bg-primary text-white mt-5 p-5">
 		<div class="container">
 			<div class="row">
 				<div class="col">
-					<p class="lead text-center">Copyright &copy; Blogen</p>
+					<p class="lead text-center text-white">Copyright &copy; Movie Theater</p>
 				</div>
 			</div>
 		</div>
@@ -347,7 +349,7 @@
 
 	<script src="./js/jquery.min.js"></script>
 	<script src="./js/popper.min.js"></script>
-	<script src="./js/bootstrap.min.js"></script>>
+	<script src="./js/bootstrap.min.js"></script>
 	<script src="./js/knockout-latest.js"></script>
 	<script src="./js/main.js"></script>
 </body>
