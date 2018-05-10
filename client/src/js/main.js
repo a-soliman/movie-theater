@@ -79,9 +79,32 @@ var viewModel = {
         }
     },
 
+    addMovieLocally: ( movie ) => {
+        fetchMovies()
+    },
+
     addMovie: (formElement) => {
-        console.log('Add clicked')
-        console.log(formElement)
+        const inputs = viewModel.addMovieInputs;
+        const { title, story_line, poster, trailer_link } = inputs;
+        const elementsArray = [ title, story_line, poster, trailer_link ];
+        
+        for ( let i in elementsArray ){
+            let element = elementsArray[i];
+            if ( element.valid() !== true ) {
+                element.valid(false);
+                return;
+            }
+        }
+        let newMovie = {
+            title: title.value(),
+            story_line: story_line.value(),
+            poster: poster.value(),
+            trailer_link: trailer_link.value()
+        }
+
+        if ( postMovie(newMovie) ) {
+            $('.modal').modal('hide');
+        }
     },
 
     /* Values of the addMovie form */
@@ -205,6 +228,32 @@ function deleteMovie(_id) {
         response.json().then( ( data ) => {
             viewModel.successMessage(data.message)
             viewModel.removeMovieLocally(_id);
+        })
+    })
+};
+
+function postMovie(movie) {
+    return fetch(`http://localhost:5000/add`, {
+        body: JSON.stringify(movie),
+        cache: 'no-cache',
+        headers: {
+            'content-type': 'application/json'
+        },
+        method: 'POST'
+    })
+    .then( ( response ) => {
+        if (response.status !== 201 ) {
+            console.log('Looks like the backend server is not running on port 5000. ' + response.status);
+            response.json().then( ( data ) => {
+                viewModel.failuerMessage(data.message)
+            })
+            return false;
+        }
+        response.json().then( ( data ) => {
+            viewModel.successMessage(data.message);
+            console.log('Added');
+            viewModel.addMovieLocally(movie);
+            return true;
         })
     })
 }
