@@ -55,11 +55,6 @@ var viewModel = {
         return trimedStory_line;
     },
 
-    editMovie: (data, event) => {
-        let _id = data._id;
-        console.log(_id)
-    },
-
     /* Triggers the DELETE API call */
     removeMovie: (data, event) => {
         let _id = data._id;
@@ -186,6 +181,151 @@ var viewModel = {
             trailer_link.valid(true);
             return;
         }
+    },
+
+    /* EDIT MOVIE */
+
+    setEditableMovieValues: (data, event) => {
+        let inputValues = viewModel.editMovieInputs;
+        const {_id, title, story_line, poster, trailer_link} = inputValues;
+        const elementsArray = [_id, title, story_line, poster, trailer_link];
+
+        // Subscribe the values from the movie to the observable
+        _id.value(data._id);
+        title.value(data.title);
+        story_line.value(data.story_line);
+        poster.value(data.poster);
+        trailer_link.value(data.trailer_link);
+    },
+
+    editMovie: () => {
+        let inputValues = viewModel.editMovieInputs;
+        const {_id, title, story_line, poster, trailer_link} = inputValues;
+        const elementsArray = [_id, title, story_line, poster, trailer_link];
+
+        // Check if all validation has passed
+        for ( let i in elementsArray ){
+            let element = elementsArray[i];
+            if ( element.valid() !== true ) {
+                element.valid(false);
+                return;
+            }
+        }
+
+        // Init the edited movie
+        let editedMovie = {
+            title: title.value(),
+            story_line: story_line.value(),
+            poster: poster.value(),
+            trailer_link: trailer_link.value()
+        };
+
+        if (putMovies(_id.value(), editedMovie)) {
+            viewModel.editMovieLocally(_id.value(), editedMovie);
+            $('.modal').modal('hide');
+            console.log('Edited the movies');
+        }
+
+    },
+    /* This function will edit a movie locally after a successful PUT Request */
+    editMovieLocally: (_id, editedMovie) => {
+        editedMovie._id = _id;
+
+        for (let i = 0; i < viewModel.movies().length; i++) {
+            let movie = viewModel.movies()[i];
+            
+            if ( movie._id == _id ) {
+                console.log('Found the movie')
+                viewModel.movies.replace(movie, editedMovie);
+                console.log('performed replace')
+                return;
+            }
+        }
+    },
+
+    /* Values of the editMovie form */
+    editMovieInputs: {
+        _id: {
+            value: ko.observable(''),
+            valid: ko.observable(true)
+        },
+        title : {
+            value: ko.observable(''),
+            valid: ko.observable(true)
+        },
+        story_line: {
+            value: ko.observable(''),
+            valid: ko.observable(true)
+        },
+        poster: {
+            value: ko.observable(''),
+            valid: ko.observable(true)
+        },
+        trailer_link: {
+            value: ko.observable(''),
+            valid: ko.observable(true)
+        }
+    },
+
+    /* 
+        A SET OF FUNCTIONS TO VALIDATE EACH INPUT FIELD
+        IN THE EDIT MOVIE FORM
+    */
+    validateEditMovieInputs: {
+        validateTitle: () => {
+            let title = viewModel.editMovieInputs.title;
+
+            if ( title.value().length < 1 ) {
+                title.valid(false);
+                return;
+            }
+            title.valid(true);
+            return;
+        },
+        validateStory_line: () => {
+            let story_line = viewModel.editMovieInputs.story_line;
+
+            if ( story_line.value().length < 10 ){
+                story_line.valid(false);
+                return
+            }
+            story_line.valid(true);
+            return;
+        },
+        validatePoster: () => {
+            let poster = viewModel.editMovieInputs.poster;
+
+            if ( poster.value().length < 10 ){
+                poster.valid(false);
+                return
+            }
+            // validate  URL regex
+            let expression = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm
+            let regex = new RegExp(expression);
+            if ( !poster.value().match(regex) ) {
+                poster.valid(false);
+                return
+            }
+            poster.valid(true);
+            return;
+        },
+        validateTrailer_link: () => {
+            let trailer_link = viewModel.editMovieInputs.trailer_link;
+
+            if ( trailer_link.value().length < 10 ){
+                trailer_link.valid(false);
+                return
+            }
+            // validate  URL regex
+            let expression = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm
+            let regex = new RegExp(expression);
+            if ( !trailer_link.value().match(regex) ) {
+                trailer_link.valid(false);
+                return
+            }
+            trailer_link.valid(true);
+            return;
+        }
     }
 }
 
@@ -253,6 +393,32 @@ function postMovie(movie) {
             viewModel.successMessage(data.message);
             console.log('Added');
             viewModel.addMovieLocally(movie);
+            return true;
+        })
+    })
+};
+
+function putMovies(_id, editedMovie) {
+    console.log('ID: ', typeof(_id))
+    return fetch(`http://localhost:5000/${_id}`, {
+        body: JSON.stringify(editedMovie),
+        cache: 'no-cache',
+        headers: {
+            'content-type': 'application/json'
+        },
+        method: 'put'
+    })
+    .then( ( response ) => {
+        if ( response.status !== 200 ) {
+            console.log('Looks like the backend server is not running on port 5000. ' + response.status);
+            response.json().then( ( data ) => {
+                viewModel.failuerMessage(data.message)
+            })
+            return false;
+        }
+        response.json().then( ( data ) => {
+            viewModel.successMessage(data.message);
+            console.log('successfull API call');
             return true;
         })
     })
