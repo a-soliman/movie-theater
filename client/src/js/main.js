@@ -31,6 +31,7 @@ var viewModel = {
             opacity: 0
         }, 400);
     },
+    
     /* Displays the trailer box */
     showTrailerBox: function(data, event) {
         let theModal = $(event.target).parent(0).data('target')
