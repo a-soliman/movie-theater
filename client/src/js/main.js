@@ -31,7 +31,7 @@ var viewModel = {
             opacity: 0
         }, 400);
     },
-
+    /* Displays the trailer box */
     showTrailerBox: function(data, event) {
         let theModal = $(event.target).parent(0).data('target')
         let videoSRC = $(event.target).parent(0).attr('data-video');
@@ -54,8 +54,13 @@ var viewModel = {
         trimedStory_line += '...';
         return trimedStory_line;
     },
+    
+    /* 
+        THE FOLLWOING SET OF METHODS WILL PERFORM A DELETE REQUEAT 
+        ----------------------------------------------------------
+    */
 
-    /* Triggers the DELETE API call */
+    /* GENERAL DELETE FUNCTION */
     removeMovie: (data, event) => {
         let _id = data._id;
         deleteMovie(_id)
@@ -67,17 +72,18 @@ var viewModel = {
             let movie = viewModel.movies()[i];
 
             if ( movie._id == _id ) {
-                viewModel.movies.remove(movie)
-                console.log('Removed locallay')
+                viewModel.movies.remove(movie);
                 return;
             }
         }
     },
 
-    addMovieLocally: ( movie ) => {
-        fetchMovies()
-    },
+    /* 
+        THE FOLLWOING SET OF METHODS WILL PERFORM A DELETE REQUEAT 
+        ----------------------------------------------------------
+    */
 
+    // GENERAL ADDMOVIE FUNCTION
     addMovie: (formElement) => {
         const inputs = viewModel.addMovieInputs;
         const { title, story_line, poster, trailer_link } = inputs;
@@ -122,10 +128,7 @@ var viewModel = {
         }
     },
 
-    /* 
-        A SET OF FUNCTIONS TO VALIDATE EACH INPUT FIELD
-        IN THE ADD MOVIE FORM
-    */
+    // A SET OF FUNCTIONS TO VALIDATE EACH INPUT FIELD 
     validateAddMovieInputs: {
         validateTitle: () => {
             let title = viewModel.addMovieInputs.title;
@@ -183,21 +186,17 @@ var viewModel = {
         }
     },
 
-    /* EDIT MOVIE */
-
-    setEditableMovieValues: (data, event) => {
-        let inputValues = viewModel.editMovieInputs;
-        const {_id, title, story_line, poster, trailer_link} = inputValues;
-        const elementsArray = [_id, title, story_line, poster, trailer_link];
-
-        // Subscribe the values from the movie to the observable
-        _id.value(data._id);
-        title.value(data.title);
-        story_line.value(data.story_line);
-        poster.value(data.poster);
-        trailer_link.value(data.trailer_link);
+    // WILL ADD A MOVIE LOCALLY AFTER A SUCCESSFUL API CALL
+    addMovieLocally: ( movie ) => {
+        fetchMovies()
     },
 
+    /* 
+        THE FOLLWOING SET OF METHODS WILL PERFORM AN EDIT REQUEAT 
+        ----------------------------------------------------------
+    */
+
+    // GENERAL EDIT FUNCTION
     editMovie: () => {
         let inputValues = viewModel.editMovieInputs;
         const {_id, title, story_line, poster, trailer_link} = inputValues;
@@ -223,11 +222,25 @@ var viewModel = {
         if (putMovies(_id.value(), editedMovie)) {
             viewModel.editMovieLocally(_id.value(), editedMovie);
             $('.modal').modal('hide');
-            console.log('Edited the movies');
         }
 
     },
-    /* This function will edit a movie locally after a successful PUT Request */
+
+    // SETS THE VALUES OF THE OBSERVABLES FOR THE MOVIE TO EDIT
+    setEditableMovieValues: (data, event) => {
+        let inputValues = viewModel.editMovieInputs;
+        const {_id, title, story_line, poster, trailer_link} = inputValues;
+        const elementsArray = [_id, title, story_line, poster, trailer_link];
+
+        // Subscribe the values from the movie to the observable
+        _id.value(data._id);
+        title.value(data.title);
+        story_line.value(data.story_line);
+        poster.value(data.poster);
+        trailer_link.value(data.trailer_link);
+    },
+
+    // EDITS A MOVIE LOCALLY AFTER A SUCCESSFULL APU CALL
     editMovieLocally: (_id, editedMovie) => {
         editedMovie._id = _id;
 
@@ -235,15 +248,13 @@ var viewModel = {
             let movie = viewModel.movies()[i];
             
             if ( movie._id == _id ) {
-                console.log('Found the movie')
                 viewModel.movies.replace(movie, editedMovie);
-                console.log('performed replace')
                 return;
             }
         }
     },
 
-    /* Values of the editMovie form */
+    // INITALIZE Values of the editMovie form
     editMovieInputs: {
         _id: {
             value: ko.observable(''),
@@ -267,10 +278,7 @@ var viewModel = {
         }
     },
 
-    /* 
-        A SET OF FUNCTIONS TO VALIDATE EACH INPUT FIELD
-        IN THE EDIT MOVIE FORM
-    */
+    // A SET OF FUNCTIONS TO VALIDATE EACH INPUT FIELD IN THE EDIT MOVIE FORM
     validateEditMovieInputs: {
         validateTitle: () => {
             let title = viewModel.editMovieInputs.title;
@@ -329,6 +337,12 @@ var viewModel = {
     }
 }
 
+/* 
+    THE NEXT SET OF METHODS ARE THE ACTUAL API CALLS 
+                USING FETCH API
+    -------------------------------------------------
+*/
+
 /* Fetch GET Requiest to to the REST API to get a list of movies */
 function fetchMovies() {
     fetch('http://localhost:5000')
@@ -352,7 +366,7 @@ function fetchMovies() {
 }
 
 
-/* Fetch GET Requiest to to the REST API to get a list of movies */
+/* Fetch DELETE Requiest to to the REST API */
 function deleteMovie(_id) {
     return fetch(`http://localhost:5000/${_id}`, {
         method: 'delete'
@@ -372,6 +386,7 @@ function deleteMovie(_id) {
     })
 };
 
+/* Fetch POST Requiest to to the REST API */
 function postMovie(movie) {
     return fetch(`http://localhost:5000/add`, {
         body: JSON.stringify(movie),
@@ -391,15 +406,14 @@ function postMovie(movie) {
         }
         response.json().then( ( data ) => {
             viewModel.successMessage(data.message);
-            console.log('Added');
             viewModel.addMovieLocally(movie);
             return true;
         })
     })
 };
 
+/* Fetch PUT Requiest to to the REST API */
 function putMovies(_id, editedMovie) {
-    console.log('ID: ', typeof(_id))
     return fetch(`http://localhost:5000/${_id}`, {
         body: JSON.stringify(editedMovie),
         cache: 'no-cache',
@@ -418,12 +432,12 @@ function putMovies(_id, editedMovie) {
         }
         response.json().then( ( data ) => {
             viewModel.successMessage(data.message);
-            console.log('successfull API call');
             return true;
         })
     })
 }
 
+// APPLYES THE KNOCKOUT BINDINGS
 ko.applyBindings(viewModel)
 
 
