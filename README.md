@@ -17,14 +17,21 @@
     1. Gulp
     1. Babel
     1. Font-Awesome
-
+----
 ### Installation:
 1. Install [Python](https://www.python.org/downloads/)
 1. Install [Node](https://nodejs.org/en/)
-1. Install Gulp 
+1. Install Gulp CLI
     ```bash
     npm install gulp-cli -g
     npm install gulp -D
+    ```
+1. Clone this REPO
+    ```bash
+    git clone https://github.com/a-soliman/movie-theater.git
+    ```
+    ```bash
+    cd movie-theater/
     ```
 1. Install the requirments for SERVER-SIDE
     ```bash
@@ -34,11 +41,16 @@
     ```
 
 1. Install the requirments for CLIENT-SIDE
-    1. navigate to clinet/
+    1. From the root '/ ' Navigate to client/
+    ```bash
+    cd client/
+    ```
+
+    1. Run 'npm install' or 'npm i' to install the needed packages.
     ```bash
     npm install
     ```
-
+----
 ### Run Application:
 1. from the root '/ ' Navigate to server/
     ```bash
@@ -61,9 +73,12 @@
 
 1. open your browser at port 3001 => [http://localhost:3001](http://localhost:3001)
 
-
-
-
-
-
-To Be Continued...
+----
+### Directions:
+1. Root page: http://localhost:3001/ 
+    - is where you can view the movies and run the trailers.
+1. Admin Page: http://localhost:3001/admin.html 
+    - Is where you can view the movies in a table.
+    - Can add a new movie to the database.
+    - Can edit all the fields in the movie.
+    - Can remove a movie.
