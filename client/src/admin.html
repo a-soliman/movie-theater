@@ -93,7 +93,7 @@
 										</a>
 									</td>
 									<td class="align-middle" align="center">
-										<button class="btn btn-warning btn-sm" data-bind="click: $parent.editMovie" data-toggle="modal" data-target="#editMovieModal">
+										<button class="btn btn-warning btn-sm" data-bind="click: $parent.setEditableMovieValues" data-toggle="modal" data-target="#editMovieModal">
 											<i class="fa fa-edit"></i>
 										</button>
 									</td>
@@ -270,12 +270,12 @@
 									<input 
 										type="text" 
 										class="form-control"
-										data-bind="value: addMovieInputs.title.value, valueUpdate: 'afterkeydown', event: {'keyup': validateAddMovieInputs.validateTitle, 'blur': validateAddMovieInputs.validateTitle}"
+										data-bind="value: editMovieInputs.title.value, valueUpdate: 'afterkeydown', event: {'keyup': validateEditMovieInputs.validateTitle, 'blur': validateEditMovieInputs.validateTitle}"
 									>
 									<!-- VALIDATION ERROR CONTAINER -->
 									<div 
 										class="validation-error alert alert-danger" 
-										data-bind="visible: addMovieInputs.title.valid() === false">
+										data-bind="visible: editMovieInputs.title.valid() === false">
 										Validation Error
 									</div>
 								</div>
@@ -286,13 +286,13 @@
 										name="story_line" 
 										rows="3" 
 										class="form-control"
-										data-bind="value: addMovieInputs.story_line.value, valueUpdate: 'afterkeydown', event: {'keyup': validateAddMovieInputs.validateStory_line, 'blur': validateAddMovieInputs.validateStory_line}"
+										data-bind="value: editMovieInputs.story_line.value, valueUpdate: 'afterkeydown', event: {'keyup': validateEditMovieInputs.validateStory_line, 'blur': validateEditMovieInputs.validateStory_line}"
 									>
 									</textarea>
 									<!-- VALIDATION ERROR CONTAINER -->
 									<div 
 										class="validation-error alert alert-danger" 
-										data-bind="visible: addMovieInputs.story_line.valid() === false">
+										data-bind="visible: editMovieInputs.story_line.valid() === false">
 										Validation Error
 									</div>
 									
@@ -305,12 +305,12 @@
 										class="form-control" 
 										name="poster" 
 										id="poster"
-										data-bind="value:addMovieInputs.poster.value, valueUpdate: 'afterkeydown', event: {'keyup': validateAddMovieInputs.validatePoster, 'blur': validateAddMovieInputs.validatePoster}"
+										data-bind="value:editMovieInputs.poster.value, valueUpdate: 'afterkeydown', event: {'keyup': validateEditMovieInputs.validatePoster, 'blur': validateEditMovieInputs.validatePoster}"
 									>
 									<!-- VALIDATION ERROR CONTAINER -->
 									<div 
 										class="validation-error alert alert-danger" 
-										data-bind="visible: addMovieInputs.poster.valid() === false">
+										data-bind="visible: editMovieInputs.poster.valid() === false">
 										Validation Error
 									</div>
 								</div>
@@ -322,12 +322,12 @@
 										class="form-control" 
 										name="trailer_link" 
 										id="trailer_link"
-										data-bind="value: addMovieInputs.trailer_link.value, valueUpdate: 'afterkeydown', event: {'keyup': validateAddMovieInputs.validateTrailer_link, 'blur': validateAddMovieInputs.validateTrailer_link}"
+										data-bind="value: editMovieInputs.trailer_link.value, valueUpdate: 'afterkeydown', event: {'keyup': validateEditMovieInputs.validateTrailer_link, 'blur': validateEditMovieInputs.validateTrailer_link}"
 									>
 									<!-- VALIDATION ERROR CONTAINER -->
 									<div 
 										class="validation-error alert alert-danger" 
-										data-bind="visible: addMovieInputs.trailer_link.valid() === false">
+										data-bind="visible: editMovieInputs.trailer_link.valid() === false">
 										Validation Error
 									</div>
 								</div>
