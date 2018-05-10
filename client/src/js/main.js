@@ -87,19 +87,19 @@ var viewModel = {
     /* Values of the addMovie form */
     addMovieInputs: {
         title : {
-            value: ko.observable(),
+            value: ko.observable(''),
             valid: ko.observable()
         },
         story_line: {
-            value: ko.observable(),
+            value: ko.observable(''),
             valid: ko.observable()
         },
         poster: {
-            value: ko.observable(),
+            value: ko.observable(''),
             valid: ko.observable()
         },
         trailer_link: {
-            value: ko.observable(),
+            value: ko.observable(''),
             valid: ko.observable()
         }
     },
@@ -122,7 +122,7 @@ var viewModel = {
         validateStory_line: () => {
             let story_line = viewModel.addMovieInputs.story_line;
 
-            if ( story_line.value().length < 1 ){
+            if ( story_line.value().length < 10 ){
                 story_line.valid(false);
                 return
             }
@@ -132,7 +132,7 @@ var viewModel = {
         validatePoster: () => {
             let poster = viewModel.addMovieInputs.poster;
 
-            if ( poster.value().length < 1 ){
+            if ( poster.value().length < 10 ){
                 poster.valid(false);
                 return
             }
@@ -149,7 +149,7 @@ var viewModel = {
         validateTrailer_link: () => {
             let trailer_link = viewModel.addMovieInputs.trailer_link;
 
-            if ( trailer_link.value().length < 1 ){
+            if ( trailer_link.value().length < 10 ){
                 trailer_link.valid(false);
                 return
             }
