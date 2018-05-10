@@ -3,20 +3,20 @@
 
 ### Technologies:
 1. Server Side
-    1. Python 3.6
-    1. Flask
-    1. Flask-RESTful
-    1. MongoDB
-    1. mLab
+    - Python 3.6
+    - Flask
+    - Flask-RESTful
+    - MongoDB
+    - mLab
 
 1. Client Side
-    1. KnockOut.js
-    1. jQuery
-    1. Sass
-    1. Bootstrap4
-    1. Gulp
-    1. Babel
-    1. Font-Awesome
+    - KnockOut.js
+    - jQuery
+    - Sass
+    - Bootstrap4
+    - Gulp
+    - Babel
+    - Font-Awesome
 ----
 ### Installation:
 1. Install [Python](https://www.python.org/downloads/)
