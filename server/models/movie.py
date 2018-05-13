@@ -17,8 +17,6 @@ class MovieModel():
         story_line (str): represents the movie's storyline.
         poster (str): a URL to the movie's poster.
         trailer_link (str): a youtube URL to the movie's trailer link
-    
-    Methods: 
 
     '''
 
